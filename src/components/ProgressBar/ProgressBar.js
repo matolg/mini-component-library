@@ -9,7 +9,6 @@ const ProgressBar = ({ value, size }) => {
   return (
     <Wrapper value={value} size={size}>
       <ProgressStripe value={value} size={size} />
-      {/* not sure how to use this correctly */}
       <VisuallyHidden>{`Progress is ${value}% done`}</VisuallyHidden>
     </Wrapper>
   );
@@ -39,7 +38,6 @@ const Wrapper = styled.div.attrs((props) => ({
 }))`
   box-shadow: inset 0px 2px 4px ${COLORS.transparentGray35};
   background-color: ${COLORS.transparentGray15};
-  overflow: hidden;
   ${(props) => sizes[props.size]}
 `;
 
@@ -48,6 +46,7 @@ const ProgressStripe = styled.div`
   height: 100%;
   background: ${COLORS.primary};
   // this looks a bit hacky as for other sizes that do not have padding overflow:hidden works perfectly
+  // but overflow:hidden breaks visuallyHidden text appearance in dev 🤔
   border-radius: ${(props) => (props.value === 100 ? "4px" : "4px 0 0 4px")};
 `;
 
